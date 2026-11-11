@@ -11,7 +11,9 @@ Bez backendu, bez logowania, bez bazy. HTML + czysty JavaScript (moduły ES), ho
 
 > **Wersja demonstracyjna.** Kwoty są orientacyjne. Firma „EkoDom Demo” jest fikcyjna. Aktualne zasady: [czystepowietrze.gov.pl](https://czystepowietrze.gov.pl).
 
-<!-- Zrzut ekranu: docs/screenshot.png -->
+**▶ Wersja online: [jansolo04.github.io/kalkulator-dotacji](https://jansolo04.github.io/kalkulator-dotacji/)**
+
+![Zrzut ekranu kalkulatora](docs/screenshot.png)
 
 ## Uruchomienie lokalne
 
