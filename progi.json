@@ -1,0 +1,39 @@
+{
+  "dataAktualizacji": "2026-11-11",
+  "zrodlo": "Program Czyste Powietrze od 31.03.2025, zmiany z 20.07.2026. Dane z elewac.io i termolab.eu (X–XI 2026). DO WERYFIKACJI na czystepowietrze.gov.pl przed publikacją.",
+  "firma": {
+    "nazwa": "EkoDom Demo",
+    "podpis": "Firma fikcyjna – projekt demonstracyjny"
+  },
+  "poziomy": {
+    "najwyzszy":   { "nazwa": "najwyższy",   "procent": 1.0, "dochodWieloosobowe": 1300, "dochodJednoosobowe": 1800 },
+    "podwyzszony": { "nazwa": "podwyższony", "procent": 0.7, "dochodWieloosobowe": 2250, "dochodJednoosobowe": 3150 },
+    "podstawowy":  { "nazwa": "podstawowy",  "procent": 0.4, "dochodRocznyWnioskodawcy": 135000 }
+  },
+  "limity": {
+    "pompa":  { "podstawowy": 12600, "podwyzszony": 22000, "najwyzszy": 31500, "jednostka": "zł" },
+    "sciany": { "podstawowy": 110,   "podwyzszony": 193,   "najwyzszy": 275,   "jednostka": "zł/m²" },
+    "dach":   { "podstawowy": 88,    "podwyzszony": 154,   "najwyzszy": 220,   "jednostka": "zł/m²" },
+    "okna":   { "podstawowy": 528,   "podwyzszony": 924,   "najwyzszy": 1320,  "jednostka": "zł/m²" },
+    "audyt":  { "podstawowy": 480,   "podwyzszony": 840,   "najwyzszy": 1200,  "jednostka": "zł" },
+    "calkowity": { "podstawowy": 56120, "podwyzszony": 98210, "najwyzszy": 140300 }
+  },
+  "koszty": {
+    "pompa":  { "stala": 25000, "stawkaZaM2Domu": 150 },
+    "sciany": { "wspolczynnikPowierzchni": 1.1, "stawka": 300 },
+    "dach":   { "wspolczynnikPowierzchni": 1.2, "stawka": 200 },
+    "okna":   { "wspolczynnikPowierzchni": 0.15, "stawka": 1400 },
+    "audyt":  { "stala": 1500 }
+  },
+  "vat": {
+    "stawkaObnizona": 0.08,
+    "stawkaPodstawowa": 0.23,
+    "limitMetrazuDlaObnizonej": 300,
+    "uwaga": "8% dla domu do 300 m²; powyżej 23% od części proporcjonalnej do nadwyżki metrażu."
+  },
+  "zasady": {
+    "paliwaStale": ["wegiel", "drewno"],
+    "paliwaBezDotacjiNaPompe": ["gaz", "olej", "prad"],
+    "klasaKotlaBezDotacjiNaZrodlo": "5"
+  }
+}

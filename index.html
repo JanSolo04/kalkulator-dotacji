@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kalkulator dotacji Czyste Powietrze</title>
+  <meta name="description" content="Orientacyjny koszt pompy ciepła, ocieplenia i okien oraz szacunkowa dotacja z programu Czyste Powietrze. Wersja demonstracyjna.">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header class="naglowek">
+    <div class="kontener">
+      <p class="marka" id="marka">EkoDom Demo</p>
+      <h1>Ile kosztuje modernizacja domu i ile dostaniesz dotacji?</h1>
+      <p class="lead">Wpisz dane domu, a kalkulator na bieżąco policzy orientacyjny koszt prac i dotację z programu „Czyste Powietrze”.</p>
+    </div>
+  </header>
+
+  <main class="kontener">
+    <form id="formularz" class="karta" novalidate>
+      <h2>1. Dane domu</h2>
+
+      <fieldset>
+        <legend>Budynek</legend>
+        <div class="siatka">
+          <label class="pole">
+            <span>Metraż domu (m²)</span>
+            <input name="metraz" type="number" inputmode="decimal" min="30" max="500" step="1" value="120" required>
+            <small class="blad" data-blad="metraz"></small>
+          </label>
+          <label class="pole">
+            <span>Liczba kondygnacji</span>
+            <select name="pietra">
+              <option value="1">1 (parterowy)</option>
+              <option value="2" selected>2 (z piętrem)</option>
+            </select>
+          </label>
+          <label class="pole">
+            <span>Ocieplenie</span>
+            <select name="ocieplenie">
+              <option value="brak" selected>brak</option>
+              <option value="czesciowe">częściowe (ściany ocieplone, dach nie)</option>
+              <option value="pelne">pełne</option>
+            </select>
+          </label>
+          <label class="pole">
+            <span>Okna</span>
+            <select name="okna">
+              <option value="stare" selected>stare (do wymiany)</option>
+              <option value="nowe">nowe</option>
+            </select>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Obecne ogrzewanie</legend>
+        <div class="siatka">
+          <label class="pole">
+            <span>Rodzaj paliwa</span>
+            <select name="paliwo">
+              <option value="wegiel" selected>węgiel / ekogroszek</option>
+              <option value="drewno">drewno / pellet</option>
+              <option value="gaz">gaz</option>
+              <option value="olej">olej opałowy</option>
+              <option value="prad">prąd</option>
+              <option value="pompa">pompa ciepła</option>
+            </select>
+          </label>
+          <label class="pole" id="pole-klasa">
+            <span>Klasa kotła</span>
+            <select name="klasaKotla">
+              <option value="ponizej5" selected>poniżej 5 klasy / brak tabliczki</option>
+              <option value="5">5 klasa / ekoprojekt</option>
+            </select>
+            <small class="blad" data-blad="klasaKotla"></small>
+          </label>
+        </div>
+        <label class="przelacznik" id="pole-pompa">
+          <input name="pompaWOfercie" type="checkbox" checked>
+          <span>Uwzględnij pompę ciepła w ofercie</span>
+        </label>
+        <p class="podpowiedz" id="podpowiedz-pompa" hidden>Przy ogrzewaniu gazem, olejem lub prądem albo przy kotle 5 klasy pompa ciepła nie dostaje dotacji. Możesz ją uwzględnić w ofercie po pełnej cenie.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Gospodarstwo domowe</legend>
+        <div class="siatka">
+          <label class="pole">
+            <span>Liczba osób</span>
+            <input name="osoby" type="number" inputmode="numeric" min="1" max="20" step="1" value="4" required>
+            <small class="blad" data-blad="osoby"></small>
+          </label>
+          <label class="pole">
+            <span>Dochód netto na osobę (zł/mies.)</span>
+            <input name="dochodMies" type="number" inputmode="decimal" min="0" step="50" value="2000" required>
+            <small class="blad" data-blad="dochodMies"></small>
+          </label>
+          <label class="pole">
+            <span>Roczny dochód wnioskodawcy (zł)</span>
+            <input name="dochodRoczny" type="number" inputmode="decimal" min="0" step="1000" value="80000" required>
+            <small class="opis">Liczy się dla poziomu podstawowego (próg <span id="prog-roczny">135 000</span> zł).</small>
+            <small class="blad" data-blad="dochodRoczny"></small>
+          </label>
+        </div>
+      </fieldset>
+    </form>
+
+    <section class="karta" id="wynik" aria-live="polite">
+      <h2>2. Wynik</h2>
+      <div id="wynik-tresc"><p class="szary">Wczytywanie progów…</p></div>
+    </section>
+
+    <section class="karta">
+      <h2>3. Oferta PDF</h2>
+      <p>Pobierz ofertę z danymi domu i tabelą kosztów.</p>
+      <button type="button" id="pobierz-pdf" class="przycisk" disabled>Pobierz ofertę PDF</button>
+      <p class="blad" id="pdf-blad" role="alert"></p>
+    </section>
+  </main>
+
+  <footer class="stopka">
+    <div class="kontener">
+      <p><strong>Wersja demonstracyjna.</strong> Kwoty orientacyjne, nie stanowią oferty handlowej. Koszty prac to przykładowe stawki, nie cennik. Zasady programu: <a href="https://czystepowietrze.gov.pl" target="_blank" rel="noopener">czystepowietrze.gov.pl</a>. Progi z dnia: <span id="data-progow">—</span>.</p>
+    </div>
+  </footer>
+</body>
+</html>
