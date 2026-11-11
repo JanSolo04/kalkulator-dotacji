@@ -1,6 +1,6 @@
 {
   "dataAktualizacji": "2026-11-11",
-  "zrodlo": "Program Czyste Powietrze od 31.03.2025, zmiany z 20.07.2026. Dane z elewac.io i termolab.eu (X–XI 2026). DO WERYFIKACJI na czystepowietrze.gov.pl przed publikacją.",
+  "zrodlo": "Program Czyste Powietrze od 31.03.2025, zmiany z 20.07.2026. Dane z serwisów branżowych elewac.io i termolab.eu (X–XI 2026), niezweryfikowane z czystepowietrze.gov.pl. Aplikacja pokazowa.",
   "firma": {
     "nazwa": "EkoDom Demo",
     "podpis": "Firma fikcyjna – projekt demonstracyjny"

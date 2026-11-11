@@ -57,6 +57,12 @@ npm test
 
 **Uproszczenia:** nie liczymy pompy gruntowej, rekuperacji, fotowoltaiki ani prefinansowania. Limit całkowity jest jeden (wariant „pompa powietrze-woda + termomodernizacja”). Powierzchnie ścian, dachu i okien są szacowane z metrażu.
 
+## Skąd są dane
+
+To projekt pokazowy. Progi dochodowe i limity dotacji pochodzą z dwóch zgodnych serwisów branżowych z X–XI 2026: [elewac.io](https://www.elewac.io/czyste-powietrze) i [termolab.eu](https://termolab.eu/program-czyste-powietrze/maksymalne-kwoty-dotacji-czyste-powietrze/). Nie były weryfikowane z dokumentami programu na czystepowietrze.gov.pl (serwis blokuje automatyczne pobieranie). Koszty prac to przykładowe stawki, nie cennik żadnej firmy.
+
+Dane są celowo oddzielone od logiki, więc podmiana na zweryfikowane wartości albo prawdziwy cennik to edycja jednego pliku `progi.json`, bez zmian w kodzie.
+
 ## Jak zaktualizować progi
 
 Wszystko jest w `progi.json`, kod się nie zmienia:

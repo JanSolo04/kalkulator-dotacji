@@ -95,7 +95,7 @@ export async function pobierzPdf(d, w, progi) {
   doc.setFontSize(8);
   const uwaga = 'Wersja demonstracyjna. Kwoty orientacyjne, nie stanowią oferty handlowej. Koszty prac to przykładowe stawki. '
     + 'Dotacja liczona od kosztów brutto jako mniejsza z kwot: procent poziomu albo limit jednostkowy programu. '
-    + `Zasady programu: czystepowietrze.gov.pl. Progi z dnia: ${progi.dataAktualizacji}.`;
+    + `Zasady programu: czystepowietrze.gov.pl. Progi według serwisów branżowych (stan na ${progi.dataAktualizacji}), niezweryfikowane ze źródłem.`;
   doc.text(doc.splitTextToSize(uwaga, 180), L, Math.max(y + 4, 270));
 
   doc.save(`oferta-${new Date().toISOString().slice(0, 10)}.pdf`);
